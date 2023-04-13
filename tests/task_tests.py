@@ -34,4 +34,12 @@ class TestTasks(unittest.TestCase):
         new_task = Task("walk the dog", 50)
         self.assertEqual(None, get_preferred_option(new_task, self.cook))
 
+    def test_same_description_different_duration__ordinary(self):
+        new_task = Task("wash clothes", 20)
+        self.assertEqual(new_task, get_preferred_option(self.clothes, new_task))
+
+    def test_same_description_different_duration__reversed(self):
+        new_task = Task("wash clothes", 20)
+        self.assertEqual(new_task, get_preferred_option(new_task, self.clothes))
+
     

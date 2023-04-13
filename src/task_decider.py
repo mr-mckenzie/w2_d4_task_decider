@@ -1,7 +1,7 @@
-def get_preferred_option(task_1, task_2):
+def get_preferred_option(first_task, second_task):
     
-    dictionary_of_winning_condition = {
-        # key is preferred over value(s)
+    dict_preferences = {
+        # the key is the preferred task over the tasks in the value list
         "wash dishes" : ["cook dinner", "wash clothes"],
         "clean windows" : ["wash dishes", "do ironing"],
         "cook dinner" : ["clean windows", "do ironing"],
@@ -9,11 +9,15 @@ def get_preferred_option(task_1, task_2):
         "do ironing" : ["wash clothes", "wash dishes"]
     }
 
-    if task_1.description in dictionary_of_winning_condition and task_2.description in dictionary_of_winning_condition:
-        if task_2.description in dictionary_of_winning_condition[task_1.description]:
-            return task_1
-        else:
-            return task_2
+    if first_task.description in dict_preferences and second_task.description in dict_preferences:
+        if first_task.description == second_task.description: 
+            if first_task.duration < second_task.duration:
+                #return the longer task
+                return second_task
+            else:
+                return first_task
         
-
-
+        if second_task.description in dict_preferences[first_task.description]:
+            return first_task
+        else:
+            return second_task
